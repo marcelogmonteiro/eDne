@@ -1,4 +1,9 @@
-﻿using WebAPIWithSwagger.Models;
+﻿using System.Collections.Generic;
+using System.Data;
+using System.Text;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using WebAPIWithSwagger.Models;
 
 namespace WebAPIWithSwagger.Controllers
 {
