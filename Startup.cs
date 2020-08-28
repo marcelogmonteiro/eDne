@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.IO;
 using System.Reflection;
@@ -27,18 +26,18 @@ namespace WebAPIWithSwagger
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Lyli eDNE API",
+                    Title = "eDNE API",
                     Description = "API para pesquisa de endereço por CEP ou Logradouro",
-                    TermsOfService = "None",
-                    Contact = new Contact
+                    TermsOfService = new System.Uri("http://lyli.com.br"),
+                    Contact = new Microsoft.OpenApi.Models.OpenApiContact
                     {
                         Name = "Marcelo Monteiro",
                         Email = "mm@lyli.com.br"
                     },
-                    License = new License
+                    License = new Microsoft.OpenApi.Models.OpenApiLicense
                     {
                         Name = "Lyli Soluções"
                     }
@@ -48,8 +47,7 @@ namespace WebAPIWithSwagger
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
-            });
-        }
+            });        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
